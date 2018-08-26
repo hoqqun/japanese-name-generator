@@ -1,8 +1,8 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12 m6>
-      <v-form v-model="valid">
-        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
+      <v-form ref="form" v-model="valid">
+        <v-text-field v-model="name" :rules="[rules.required]" :counter="10" label="Name" required></v-text-field>
         <v-radio-group v-model="gender" row>
           <v-radio label="Male" value="male"></v-radio>
           <v-radio label="Female" value="female"></v-radio>
@@ -22,6 +22,7 @@
             v-model="date"
             label="Birth Date"
             prepend-icon="event"
+            :rules="[rules.required]"
             readonly
           ></v-text-field>
           <v-date-picker v-model="date" scrollable>
@@ -42,19 +43,26 @@ import axios from 'axios'
 export default {
   data: function () {
     return {
+      valid: true,
       name: null,
       gender: "male",
       date: null,
       modal: false,
+      rules: {
+        required: value => !!value || 'Required.'
+      }
     }
   },
   methods: {
     generate: function(event) {
-      axios.get(process.env.baseUrl + '/api/names',{params: {name: this.name, sex: this.gender, birth_date: this.date}}).then( response => {
-        this.$store.commit('name/set', response.data)
-      }).catch(error => {
-        console.log(error)
-      })
+
+      if (this.$refs.form.validate()) {
+        axios.get(process.env.baseUrl + '/api/names',{params: {name: this.name, sex: this.gender, birth_date: this.date}}).then( response => {
+          this.$store.commit('name/set', response.data)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     }
   }
 }
