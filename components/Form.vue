@@ -32,7 +32,7 @@
           </v-date-picker>
         </v-dialog>
         <v-layout align-center justify-center fill-height row>
-          <v-btn @click="generate">Generate You Japanese Name</v-btn>
+          <v-btn @click="generate">Generate My Japanese Name</v-btn>
         </v-layout>
       </v-form>
     </v-flex>
