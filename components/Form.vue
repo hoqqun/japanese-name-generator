@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     generate: function(event) {
-      axios.get(baseUrl + '/api/names',{params: {name: this.name, sex: this.gender, birth_date: this.date}}).then( response => {
+      axios.get(process.env.baseUrl + '/api/names',{params: {name: this.name, sex: this.gender, birth_date: this.date}}).then( response => {
         this.$store.commit('name/set', response.data)
       }).catch(error => {
         console.log(error)
