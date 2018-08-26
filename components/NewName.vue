@@ -17,10 +17,10 @@
 
 <style>
 .kanji {
-  font-size: 12rem;
+  font-size: 17vw;
 }
 .roman_letter {
-  font-size: 6rem;
+  font-size: 10vw;
 }
 .v-enter-active, .v-leave-active {
   transition: opacity 3s;
