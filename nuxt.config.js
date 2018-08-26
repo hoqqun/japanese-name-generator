@@ -2,6 +2,9 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  modules: [
+    '@nuxtjs/vuetify'
+  ],
   head: {
     title: 'japanese-name-generator',
     meta: [
@@ -24,6 +27,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
+    vendor: ['axios'],
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -34,6 +38,9 @@ module.exports = {
         })
       }
     }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3001'
   }
 }
 
