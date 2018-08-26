@@ -34,12 +34,6 @@ module.exports = {
         })
       }
     }
-  },
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "heroku-postbuild": "npm run build"
   }
 }
 
